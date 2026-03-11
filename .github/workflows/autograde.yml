@@ -1,0 +1,493 @@
+name: Autograding
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+  AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+  AZURE_OPENAI_DEPLOYMENT: ${{ secrets.AZURE_OPENAI_DEPLOYMENT }}
+  STUDENT_CORPUS_SEED: ${{ github.actor }}
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run student code
+        run: python app/main.py
+        continue-on-error: true
+
+      - name: Clone autograder
+        uses: actions/checkout@v4
+        with:
+          repository: Tech901/ai102-autograder-tests
+          token: ${{ secrets.AUTOGRADER_PAT }}
+          path: .autograder
+
+      # --- 45 tests, 100 points ---
+      - name: "test_canary_system_message_not_empty"
+        id: test1
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_canary_system_message_not_empty"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_canary_system_message_not_empty -v --tb=short"
+          timeout: "5"
+          max-score: "3"
+
+      - name: "test_canary_classification_category_not_empty"
+        id: test2
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_canary_classification_category_not_empty"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_canary_classification_category_not_empty -v --tb=short"
+          timeout: "5"
+          max-score: "3"
+
+      - name: "test_canary_router_modified"
+        id: test3
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_canary_router_modified"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_canary_router_modified -v --tb=short"
+          timeout: "5"
+          max-score: "3"
+
+      - name: "test_canary_schemas_modified"
+        id: test4
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_canary_schemas_modified"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_canary_schemas_modified -v --tb=short"
+          timeout: "5"
+          max-score: "3"
+
+      - name: "test_canary_tool_definitions_modified"
+        id: test5
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_canary_tool_definitions_modified"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_canary_tool_definitions_modified -v --tb=short"
+          timeout: "5"
+          max-score: "3"
+
+      - name: "test_canary_metrics_implemented"
+        id: test6
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_canary_metrics_implemented"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_canary_metrics_implemented -v --tb=short"
+          timeout: "5"
+          max-score: "3"
+
+      - name: "test_canary_cost_tracker_implemented"
+        id: test7
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_canary_cost_tracker_implemented"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_canary_cost_tracker_implemented -v --tb=short"
+          timeout: "5"
+          max-score: "3"
+
+      - name: "test_contract_task"
+        id: test8
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_contract_task"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_contract_task -v --tb=short"
+          timeout: "5"
+          max-score: "3"
+
+      - name: "test_contract_status"
+        id: test9
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_contract_status"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_contract_status -v --tb=short"
+          timeout: "5"
+          max-score: "3"
+
+      - name: "test_contract_outputs"
+        id: test10
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_contract_outputs"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_contract_outputs -v --tb=short"
+          timeout: "5"
+          max-score: "3"
+
+      - name: "test_contract_metadata"
+        id: test11
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_contract_metadata"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_contract_metadata -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_contract_pipeline_fields"
+        id: test12
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_contract_pipeline_fields"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_contract_pipeline_fields -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_system_message_has_safety"
+        id: test13
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_system_message_has_safety"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_system_message_has_safety -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_system_message_requires_json"
+        id: test14
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_system_message_requires_json"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_system_message_requires_json -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_prompt_templates_produce_output"
+        id: test15
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_prompt_templates_produce_output"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_prompt_templates_produce_output -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_tool_definitions_structure"
+        id: test16
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_tool_definitions_structure"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_tool_definitions_structure -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_tool_has_route_to_department"
+        id: test17
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_tool_has_route_to_department"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_tool_has_route_to_department -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_schema_validates_correct_output"
+        id: test18
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_schema_validates_correct_output"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_schema_validates_correct_output -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_schema_rejects_missing_fields"
+        id: test19
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_schema_rejects_missing_fields"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_schema_rejects_missing_fields -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_routing_all_categories"
+        id: test20
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_routing_all_categories"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_routing_all_categories -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_routing_unknown_category_fallback"
+        id: test21
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_routing_unknown_category_fallback"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_routing_unknown_category_fallback -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_retry_logic_handles_valid_first_try"
+        id: test22
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_retry_logic_handles_valid_first_try"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_retry_logic_handles_valid_first_try -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_retry_logic_retries_on_invalid"
+        id: test23
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_retry_logic_retries_on_invalid"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_retry_logic_retries_on_invalid -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_retry_logic_exhausts_retries"
+        id: test24
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_retry_logic_exhausts_retries"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_retry_logic_exhausts_retries -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_validate_input_rejects_empty"
+        id: test25
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_validate_input_rejects_empty"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_validate_input_rejects_empty -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_validate_input_truncates_long"
+        id: test26
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_validate_input_truncates_long"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_validate_input_truncates_long -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_parse_response_handles_invalid_json"
+        id: test27
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_parse_response_handles_invalid_json"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_parse_response_handles_invalid_json -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_parse_response_handles_wrong_category"
+        id: test28
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_parse_response_handles_wrong_category"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_parse_response_handles_wrong_category -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_no_hardcoded_keys_hidden"
+        id: test29
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_no_hardcoded_keys_hidden"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_no_hardcoded_keys_hidden -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_pipeline_accuracy_threshold"
+        id: test30
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_pipeline_accuracy_threshold"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_pipeline_accuracy_threshold -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_baseline_accuracy_threshold"
+        id: test31
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_baseline_accuracy_threshold"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_baseline_accuracy_threshold -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_temperature_experiment_structure"
+        id: test32
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_temperature_experiment_structure"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_temperature_experiment_structure -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_cost_is_positive"
+        id: test33
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_cost_is_positive"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_cost_is_positive -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_cost_calculation_with_pricing"
+        id: test34
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_cost_calculation_with_pricing"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_cost_calculation_with_pricing -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_cost_tracker_accumulates"
+        id: test35
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_cost_tracker_accumulates"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_cost_tracker_accumulates -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_estimate_monthly_cost"
+        id: test36
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_estimate_monthly_cost"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_estimate_monthly_cost -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_report_exists"
+        id: test37
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_report_exists"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_report_exists -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_report_has_required_sections"
+        id: test38
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_report_has_required_sections"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_report_has_required_sections -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_sweep_minimum_configs"
+        id: test39
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_sweep_minimum_configs"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_sweep_minimum_configs -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_eval_log_has_entries"
+        id: test40
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_eval_log_has_entries"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_eval_log_has_entries -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_eval_log_has_token_fields"
+        id: test41
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_eval_log_has_token_fields"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_eval_log_has_token_fields -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_hidden_cases_routing"
+        id: test42
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_hidden_cases_routing"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_hidden_cases_routing -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_metrics_handle_empty_categories"
+        id: test43
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_metrics_handle_empty_categories"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_metrics_handle_empty_categories -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_recall_correct_values"
+        id: test44
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_recall_correct_values"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_recall_correct_values -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: "test_injection_defense"
+        id: test45
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "test_injection_defense"
+          command: "python -m pytest .autograder/activity03-triage-engine/test_hidden.py::test_injection_defense -v --tb=short"
+          timeout: "5"
+          max-score: "2"
+
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          TEST1_RESULTS: "${{ steps.test1.outputs.result }}"
+          TEST2_RESULTS: "${{ steps.test2.outputs.result }}"
+          TEST3_RESULTS: "${{ steps.test3.outputs.result }}"
+          TEST4_RESULTS: "${{ steps.test4.outputs.result }}"
+          TEST5_RESULTS: "${{ steps.test5.outputs.result }}"
+          TEST6_RESULTS: "${{ steps.test6.outputs.result }}"
+          TEST7_RESULTS: "${{ steps.test7.outputs.result }}"
+          TEST8_RESULTS: "${{ steps.test8.outputs.result }}"
+          TEST9_RESULTS: "${{ steps.test9.outputs.result }}"
+          TEST10_RESULTS: "${{ steps.test10.outputs.result }}"
+          TEST11_RESULTS: "${{ steps.test11.outputs.result }}"
+          TEST12_RESULTS: "${{ steps.test12.outputs.result }}"
+          TEST13_RESULTS: "${{ steps.test13.outputs.result }}"
+          TEST14_RESULTS: "${{ steps.test14.outputs.result }}"
+          TEST15_RESULTS: "${{ steps.test15.outputs.result }}"
+          TEST16_RESULTS: "${{ steps.test16.outputs.result }}"
+          TEST17_RESULTS: "${{ steps.test17.outputs.result }}"
+          TEST18_RESULTS: "${{ steps.test18.outputs.result }}"
+          TEST19_RESULTS: "${{ steps.test19.outputs.result }}"
+          TEST20_RESULTS: "${{ steps.test20.outputs.result }}"
+          TEST21_RESULTS: "${{ steps.test21.outputs.result }}"
+          TEST22_RESULTS: "${{ steps.test22.outputs.result }}"
+          TEST23_RESULTS: "${{ steps.test23.outputs.result }}"
+          TEST24_RESULTS: "${{ steps.test24.outputs.result }}"
+          TEST25_RESULTS: "${{ steps.test25.outputs.result }}"
+          TEST26_RESULTS: "${{ steps.test26.outputs.result }}"
+          TEST27_RESULTS: "${{ steps.test27.outputs.result }}"
+          TEST28_RESULTS: "${{ steps.test28.outputs.result }}"
+          TEST29_RESULTS: "${{ steps.test29.outputs.result }}"
+          TEST30_RESULTS: "${{ steps.test30.outputs.result }}"
+          TEST31_RESULTS: "${{ steps.test31.outputs.result }}"
+          TEST32_RESULTS: "${{ steps.test32.outputs.result }}"
+          TEST33_RESULTS: "${{ steps.test33.outputs.result }}"
+          TEST34_RESULTS: "${{ steps.test34.outputs.result }}"
+          TEST35_RESULTS: "${{ steps.test35.outputs.result }}"
+          TEST36_RESULTS: "${{ steps.test36.outputs.result }}"
+          TEST37_RESULTS: "${{ steps.test37.outputs.result }}"
+          TEST38_RESULTS: "${{ steps.test38.outputs.result }}"
+          TEST39_RESULTS: "${{ steps.test39.outputs.result }}"
+          TEST40_RESULTS: "${{ steps.test40.outputs.result }}"
+          TEST41_RESULTS: "${{ steps.test41.outputs.result }}"
+          TEST42_RESULTS: "${{ steps.test42.outputs.result }}"
+          TEST43_RESULTS: "${{ steps.test43.outputs.result }}"
+          TEST44_RESULTS: "${{ steps.test44.outputs.result }}"
+          TEST45_RESULTS: "${{ steps.test45.outputs.result }}"
+        with:
+          runners: test1,test2,test3,test4,test5,test6,test7,test8,test9,test10,test11,test12,test13,test14,test15,test16,test17,test18,test19,test20,test21,test22,test23,test24,test25,test26,test27,test28,test29,test30,test31,test32,test33,test34,test35,test36,test37,test38,test39,test40,test41,test42,test43,test44,test45
