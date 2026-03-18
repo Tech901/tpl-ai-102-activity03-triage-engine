@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "input": "My kids keep tripping over the buckled sidewalk on Autumn Avenue near the community center",
+    "expected_category": "Pothole",
+    "neighborhood": "Normal Station"
+  },
+  {
+    "id": 2,
+    "input": "Road surface is crumbling on Union Avenue between McLean and Belvedere",
+    "expected_category": "Pothole",
+    "neighborhood": "Midtown"
+  },
+  {
+    "id": 3,
+    "input": "Deep pothole on Elvis Presley Boulevard near Graceland causing cars to swerve",
+    "expected_category": "Pothole",
+    "neighborhood": "Whitehaven"
+  },
+  {
+    "id": 4,
+    "input": "The asphalt is completely torn up on Getwell Road south of Park Avenue where trucks keep turning",
+    "expected_category": "Pothole",
+    "neighborhood": "Berclair"
+  },
+  {
+    "id": 5,
+    "input": "There is a sinkhole forming in the middle of Airways Boulevard near the old railroad crossing",
+    "expected_category": "Pothole",
+    "neighborhood": "Orange Mound"
+  },
+  {
+    "id": 6,
+    "input": "My neighbor on Young Avenue has been blasting music past midnight every night this week",
+    "expected_category": "Noise Complaint",
+    "neighborhood": "Cooper-Young"
+  },
+  {
+    "id": 7,
+    "input": "Construction crew starting jackhammer work at 5am on Madison Avenue near Overton Square",
+    "expected_category": "Noise Complaint",
+    "neighborhood": "Midtown"
+  },
+  {
+    "id": 8,
+    "input": "Someone is running a leaf blower at 6am every Saturday morning on Harbert Avenue waking up the whole block",
+    "expected_category": "Noise Complaint",
+    "neighborhood": "East Memphis"
+  },
+  {
+    "id": 9,
+    "input": "Loud generator running 24/7 behind the warehouse on South Main Street",
+    "expected_category": "Noise Complaint",
+    "neighborhood": "South Main"
+  },
+  {
+    "id": 10,
+    "input": "Band practicing in garage on Evelyn Avenue with amplifiers at full volume until 2am",
+    "expected_category": "Noise Complaint",
+    "neighborhood": "Binghampton"
+  },
+  {
+    "id": 11,
+    "input": "There are bags of yard waste piled up on the curb at Vollintine and Evergreen that have been sitting for weeks",
+    "expected_category": "Trash/Litter",
+    "neighborhood": "Vollintine-Evergreen"
+  },
+  {
+    "id": 12,
+    "input": "Overflowing dumpster behind the restaurant on Cooper Street attracting rats",
+    "expected_category": "Trash/Litter",
+    "neighborhood": "Cooper-Young"
+  },
+  {
+    "id": 13,
+    "input": "Fast food wrappers and cups keep blowing out of the overflowing bin at Tobey Park on Kimball Avenue",
+    "expected_category": "Trash/Litter",
+    "neighborhood": "Frayser"
+  },
+  {
+    "id": 14,
+    "input": "Illegal dumping of construction debris in the empty lot on Chelsea Avenue",
+    "expected_category": "Trash/Litter",
+    "neighborhood": "North Memphis"
+  },
+  {
+    "id": 15,
+    "input": "Trash cans have not been collected for two weeks on Peabody Avenue",
+    "expected_category": "Trash/Litter",
+    "neighborhood": "Midtown"
+  },
+  {
+    "id": 16,
+    "input": "The street light at the corner of Lamar and Central has been out for three weeks",
+    "expected_category": "Street Light",
+    "neighborhood": "Midtown"
+  },
+  {
+    "id": 17,
+    "input": "The parking lot lights at Raleigh Springs Mall are completely dead making it unsafe to walk at night",
+    "expected_category": "Street Light",
+    "neighborhood": "Raleigh"
+  },
+  {
+    "id": 18,
+    "input": "Light pole is leaning dangerously over the sidewalk on Germantown Parkway",
+    "expected_category": "Street Light",
+    "neighborhood": "Germantown"
+  },
+  {
+    "id": 19,
+    "input": "All the lights on the Highland Strip near the university are completely dark",
+    "expected_category": "Street Light",
+    "neighborhood": "University District"
+  },
+  {
+    "id": 20,
+    "input": "Damaged street light with exposed wiring on Third Street near the FedExForum",
+    "expected_category": "Street Light",
+    "neighborhood": "Downtown"
+  },
+  {
+    "id": 21,
+    "input": "Water is gushing from a broken pipe on Lamar Avenue near the Soulsville neighborhood",
+    "expected_category": "Water/Sewer",
+    "neighborhood": "Soulsville"
+  },
+  {
+    "id": 22,
+    "input": "Raw sewage smell is coming from the manhole cover on Prescott Street near Carnes Avenue",
+    "expected_category": "Water/Sewer",
+    "neighborhood": "Binghampton"
+  },
+  {
+    "id": 23,
+    "input": "Fire hydrant leaking steadily on Park Avenue near Overton Park",
+    "expected_category": "Water/Sewer",
+    "neighborhood": "Midtown"
+  },
+  {
+    "id": 24,
+    "input": "Basement flooding from storm drain backup on Autumn Avenue after heavy rain",
+    "expected_category": "Water/Sewer",
+    "neighborhood": "Normal Station"
+  },
+  {
+    "id": 25,
+    "input": "Brown discolored water coming from taps at our building on Front Street downtown",
+    "expected_category": "Water/Sewer",
+    "neighborhood": "Downtown"
+  },
+  {
+    "id": 26,
+    "input": "I want to know when my property taxes are due this year",
+    "expected_category": "Other",
+    "neighborhood": "Citywide"
+  },
+  {
+    "id": 27,
+    "input": "How do I apply for a building permit to renovate my house in Harbor Town?",
+    "expected_category": "Other",
+    "neighborhood": "Harbor Town"
+  },
+  {
+    "id": 28,
+    "input": "Can you tell me the hours for the Benjamin L. Hooks Central Library?",
+    "expected_category": "Other",
+    "neighborhood": "Downtown"
+  },
+  {
+    "id": 29,
+    "input": "Where do I register to vote for the upcoming Memphis city council election?",
+    "expected_category": "Other",
+    "neighborhood": "Citywide"
+  },
+  {
+    "id": 30,
+    "input": "I need information about the city recycling program and pickup schedule for Frayser",
+    "expected_category": "Other",
+    "neighborhood": "Frayser"
+  }
+]

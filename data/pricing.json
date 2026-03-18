@@ -1,0 +1,10 @@
+{
+  "gpt-4o": {
+    "input_per_1k_tokens": 0.0025,
+    "output_per_1k_tokens": 0.01
+  },
+  "gpt-4o-mini": {
+    "input_per_1k_tokens": 0.00015,
+    "output_per_1k_tokens": 0.0006
+  }
+}
