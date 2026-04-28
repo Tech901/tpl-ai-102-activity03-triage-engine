@@ -1,0 +1,32 @@
+{
+  "Pothole": {
+    "department": "Public Works - Streets",
+    "sla_hours": 72,
+    "priority": "standard"
+  },
+  "Noise Complaint": {
+    "department": "Code Enforcement",
+    "sla_hours": 48,
+    "priority": "standard"
+  },
+  "Trash/Litter": {
+    "department": "Solid Waste Management",
+    "sla_hours": 24,
+    "priority": "standard"
+  },
+  "Street Light": {
+    "department": "Public Works - Electrical",
+    "sla_hours": 96,
+    "priority": "low"
+  },
+  "Water/Sewer": {
+    "department": "Memphis Light Gas & Water",
+    "sla_hours": 12,
+    "priority": "high"
+  },
+  "Other": {
+    "department": "General Services",
+    "sla_hours": 120,
+    "priority": "low"
+  }
+}

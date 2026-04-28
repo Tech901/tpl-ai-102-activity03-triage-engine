@@ -1,0 +1,62 @@
+[
+  {
+    "input": "There's a huge pothole on Poplar Avenue near the Walgreens",
+    "expected_category": "Pothole",
+    "expected_department": "Public Works - Streets"
+  },
+  {
+    "input": "My neighbor has been blasting music past midnight on Mud Island",
+    "expected_category": "Noise Complaint",
+    "expected_department": "Code Enforcement"
+  },
+  {
+    "input": "Overflowing trash cans at Overton Park near the dog park area",
+    "expected_category": "Trash/Litter",
+    "expected_department": "Solid Waste Management"
+  },
+  {
+    "input": "The street light on the corner of Union and Bellevue has been out for three weeks",
+    "expected_category": "Street Light",
+    "expected_department": "Public Works - Electrical"
+  },
+  {
+    "input": "Water main break on Lamar Avenue flooding the entire intersection",
+    "expected_category": "Water/Sewer",
+    "expected_department": "Memphis Light Gas & Water"
+  },
+  {
+    "input": "Several potholes along Sam Cooper Boulevard near East Parkway",
+    "expected_category": "Pothole",
+    "expected_department": "Public Works - Streets"
+  },
+  {
+    "input": "Loud construction noise starting at 5am every morning on Front Street downtown",
+    "expected_category": "Noise Complaint",
+    "expected_department": "Code Enforcement"
+  },
+  {
+    "input": "Dumped mattresses and furniture on the sidewalk at Third and Beale",
+    "expected_category": "Trash/Litter",
+    "expected_department": "Solid Waste Management"
+  },
+  {
+    "input": "Sewer drain on Riverside Drive near the Mississippi River is backed up and smells terrible",
+    "expected_category": "Water/Sewer",
+    "expected_department": "Memphis Light Gas & Water"
+  },
+  {
+    "input": "I want to know when the next city council meeting is scheduled",
+    "expected_category": "Other",
+    "expected_department": "General Services"
+  },
+  {
+    "input": "Road surface crumbling on Danny Thomas Boulevard near St. Jude",
+    "expected_category": "Pothole",
+    "expected_department": "Public Works - Streets"
+  },
+  {
+    "input": "Three street lights are flickering on and off along Walnut Grove Road near Oak Court Mall",
+    "expected_category": "Street Light",
+    "expected_department": "Public Works - Electrical"
+  }
+]

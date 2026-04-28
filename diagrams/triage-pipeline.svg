@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 258" role="img">
+  <title>Triage Engine Pipeline</title>
+  <desc>A six-step horizontal pipeline showing the 311 request triage flow: citizen text input, system message configuration, GPT-4o function calling, JSON schema validation with retry loop, routing rules application, and department output with SLA and priority.</desc>
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0E0E0E"/>
+      <stop offset="100%" stop-color="#080808"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E1E1E"/>
+      <stop offset="100%" stop-color="#141414"/>
+    </linearGradient>
+    <linearGradient id="amberBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFBF3B"/>
+      <stop offset="100%" stop-color="#E5A530"/>
+    </linearGradient>
+    <linearGradient id="blueBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2D5A94"/>
+      <stop offset="100%" stop-color="#1E3F6B"/>
+    </linearGradient>
+    <linearGradient id="greenBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8DC63F"/>
+      <stop offset="100%" stop-color="#6FA832"/>
+    </linearGradient>
+    <linearGradient id="underlineGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFBF3B"/>
+      <stop offset="100%" stop-color="#E5A530"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#FFBF3B"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2D5A94"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8DC63F"/>
+    </marker>
+    <marker id="arrowDash" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#FFBF3B"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="258" fill="url(#bgGrad)" rx="6"/>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="Syne, Calibri, sans-serif" font-size="18" font-weight="bold" fill="#FAFAFA">Triage Engine Pipeline</text>
+  <rect x="370" y="37" width="160" height="3" rx="1.5" fill="url(#underlineGrad)"/>
+
+  <!-- Node 1: 311 Request (amber) -->
+  <g filter="url(#shadow)">
+    <rect x="20" y="65" width="115" height="62" rx="5" fill="url(#boxGrad)" stroke="#333" stroke-width="1"/>
+    <rect x="20" y="65" width="4" height="62" rx="2" fill="url(#amberBar)"/>
+  </g>
+  <text x="77" y="90" text-anchor="middle" font-family="Syne, Calibri, sans-serif" font-size="11" font-weight="bold" fill="#FFBF3B">311 Request</text>
+  <text x="77" y="112" text-anchor="middle" font-family="Source Sans 3, Calibri, sans-serif" font-size="9" fill="#CCC">Citizen text</text>
+
+  <!-- Arrow 1-2 -->
+  <line x1="140" y1="96" x2="168" y2="96" stroke="#FFBF3B" stroke-width="1.5" marker-end="url(#arrowAmber)"/>
+
+  <!-- Node 2: System Message (amber) -->
+  <g filter="url(#shadow)">
+    <rect x="175" y="65" width="115" height="62" rx="5" fill="url(#boxGrad)" stroke="#333" stroke-width="1"/>
+    <rect x="175" y="65" width="4" height="62" rx="2" fill="url(#amberBar)"/>
+  </g>
+  <text x="232" y="90" text-anchor="middle" font-family="Syne, Calibri, sans-serif" font-size="11" font-weight="bold" fill="#FFBF3B">System Message</text>
+  <text x="232" y="112" text-anchor="middle" font-family="Source Sans 3, Calibri, sans-serif" font-size="9" fill="#CCC">Role + categories</text>
+
+  <!-- Arrow 2-3 -->
+  <line x1="295" y1="96" x2="323" y2="96" stroke="#2D5A94" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- Node 3: GPT-4o (blue) -->
+  <g filter="url(#shadow)">
+    <rect x="330" y="65" width="115" height="62" rx="5" fill="url(#boxGrad)" stroke="#333" stroke-width="1"/>
+    <rect x="330" y="65" width="4" height="62" rx="2" fill="url(#blueBar)"/>
+  </g>
+  <text x="387" y="90" text-anchor="middle" font-family="Syne, Calibri, sans-serif" font-size="11" font-weight="bold" fill="#2D5A94">GPT-4o</text>
+  <text x="387" y="112" text-anchor="middle" font-family="Source Sans 3, Calibri, sans-serif" font-size="9" fill="#CCC">Function calling</text>
+
+  <!-- Arrow 3-4 -->
+  <line x1="450" y1="96" x2="478" y2="96" stroke="#2D5A94" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- Node 4: Schema Validation (blue) -->
+  <g filter="url(#shadow)">
+    <rect x="485" y="65" width="125" height="62" rx="5" fill="url(#boxGrad)" stroke="#333" stroke-width="1"/>
+    <rect x="485" y="65" width="4" height="62" rx="2" fill="url(#blueBar)"/>
+  </g>
+  <text x="547" y="90" text-anchor="middle" font-family="Syne, Calibri, sans-serif" font-size="11" font-weight="bold" fill="#2D5A94">Schema Validation</text>
+  <text x="547" y="112" text-anchor="middle" font-family="Source Sans 3, Calibri, sans-serif" font-size="9" fill="#CCC">JSON Schema check</text>
+
+  <!-- Retry arrow (dashed, curved) from node 4 back to node 3 -->
+  <path d="M 510 130 Q 510 158 440 158 Q 370 158 370 130" fill="none" stroke="#FFBF3B" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowDash)"/>
+  <text x="445" y="172" text-anchor="middle" font-family="Source Sans 3, Calibri, sans-serif" font-size="9" font-style="italic" fill="#FFBF3B">retry</text>
+
+  <!-- Arrow 4-5 -->
+  <line x1="615" y1="96" x2="643" y2="96" stroke="#2D5A94" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- Node 5: Router (blue) -->
+  <g filter="url(#shadow)">
+    <rect x="650" y="65" width="105" height="62" rx="5" fill="url(#boxGrad)" stroke="#333" stroke-width="1"/>
+    <rect x="650" y="65" width="4" height="62" rx="2" fill="url(#blueBar)"/>
+  </g>
+  <text x="702" y="90" text-anchor="middle" font-family="Syne, Calibri, sans-serif" font-size="11" font-weight="bold" fill="#2D5A94">Router</text>
+  <text x="702" y="112" text-anchor="middle" font-family="Source Sans 3, Calibri, sans-serif" font-size="9" fill="#CCC">routing_rules.json</text>
+
+  <!-- Arrow 5-6 -->
+  <line x1="760" y1="96" x2="788" y2="96" stroke="#8DC63F" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Node 6: Department (green) -->
+  <g filter="url(#shadow)">
+    <rect x="795" y="65" width="90" height="62" rx="5" fill="url(#boxGrad)" stroke="#333" stroke-width="1"/>
+    <rect x="795" y="65" width="4" height="62" rx="2" fill="url(#greenBar)"/>
+  </g>
+  <text x="840" y="90" text-anchor="middle" font-family="Syne, Calibri, sans-serif" font-size="11" font-weight="bold" fill="#8DC63F">Department</text>
+  <text x="840" y="112" text-anchor="middle" font-family="Source Sans 3, Calibri, sans-serif" font-size="9" fill="#CCC">SLA + priority</text>
+
+  <!-- Bottom legend -->
+  <text x="450" y="215" text-anchor="middle" font-family="Source Sans 3, Calibri, sans-serif" font-size="10" fill="#999">Steps 1-6 — Classify → Validate → Route</text>
+
+  <!-- Tech901 badge -->
+  <text x="880" y="240" text-anchor="end" font-family="Source Sans 3, Calibri, sans-serif" font-size="8" fill="#555">Tech901 AI-102</text>
+</svg>
